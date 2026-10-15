@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+/* ============================================================
+   SIMRAN PIANIST — DESIGN TOKENS
+   Single source of truth. No hex value is written anywhere else.
+   ============================================================ */
+@theme {
+  /* --- Brand --------------------------------------------- */
+  --color-navy: #0d101b;
+  --color-lavender: #f3f2fa;
+  --color-rose: #f5225b;
+  --color-burgundy: #421f2a;
+  --color-gold: #f4c84d;
+  --color-ivory: #ffffff;
+
+  /* --- Derived: interaction + surface states --------------
+   * Brand rose (#f5225b) is 3.99:1 against white and 3.59:1 against lavender.
+   * That clears the 3:1 bar for icons, borders and fills, and for display-size
+   * headings, but not the 4.5:1 bar for small text. So interactive surfaces
+   * that carry white text, and rose text set small, use these deeper variants.
+   * The shift is barely perceptible; the compliance is not.
+   * ------------------------------------------------------ */
+  --color-rose-cta: #e01050;    /* white text on it: 4.82:1 */
+  --color-rose-hover: #c90a45;  /* white text on it: 5.81:1 */
+  --color-rose-press: #b80940;  /* white text on it: 6.66:1 */
+  --color-rose-text: #d40d47;   /* on lavender 4.79:1, on white 5.32:1 */
+  --color-rose-tint: #fdeaf0;
+  --color-navy-raised: #161a2b;
+  --color-navy-sunken: #080a12;
+  --color-burgundy-raised: #552937;
+  --color-gold-deep: #a97c12;
+
+  /* --- Derived: text -------------------------------------- */
+  --color-ink: #0d101b;
+  --color-ink-muted: #4e5266;
+  /* 4.66:1 on lavender, 5.18:1 on white — AA for small text */
+  --color-ink-faint: #686c81;
+  --color-ink-invert: #ffffff;
+  --color-ink-invert-muted: #b9bccd;
+
+  /* --- Derived: borders ----------------------------------- */
+  --color-line: #e2e0ee;
+  --color-line-strong: #cdcade;
+  --color-line-invert: #ffffff1f;
+
+  /* --- Radius --------------------------------------------- */
+  --radius-btn: 10px;
+  --radius-card: 16px;
+  --radius-media: 20px;
+  --radius-pill: 999px;
+
+  /* --- Shadows (subtle; design system warns off heavy) ----- */
+  --shadow-card: 0 1px 2px rgb(13 16 27 / 0.04), 0 8px 24px -12px rgb(13 16 27 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(13 16 27 / 0.05), 0 18px 40px -16px rgb(13 16 27 / 0.2);
+  --shadow-rose: 0 10px 30px -12px rgb(245 34 91 / 0.45);
+
+  /* --- Type scale (clamp-driven) --------------------------- */
+  --text-display: clamp(2.6rem, 1.3rem + 5.2vw, 5.25rem);
+  --text-h2: clamp(1.95rem, 1.35rem + 2.5vw, 3.15rem);
+  --text-h3: clamp(1.25rem, 1.1rem + 0.7vw, 1.6rem);
+  --text-h4: clamp(1.05rem, 1rem + 0.35vw, 1.2rem);
+  --text-lead: clamp(1.05rem, 1rem + 0.45vw, 1.3rem);
+  --text-body: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --text-small: 0.875rem;
+  --text-micro: 0.75rem;
+
+  /* --- Rhythm --------------------------------------------- */
+  /* Top and bottom padding of every section. Tightened by 40% from
+     clamp(4.5rem, 2rem + 8vw, 8.5rem) — the page had too much dead space. */
+  --spacing-section: clamp(2.7rem, 1.2rem + 4.8vw, 5.1rem);
+  --spacing-gutter: clamp(1.25rem, 0.5rem + 2.5vw, 2.5rem);
+
+  /* --- Motion --------------------------------------------- */
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 160ms;
+  --dur-base: 240ms;
+}
+
+/* ============================================================
+   Z-INDEX SCALE — declared once so nothing escalates to 9999
+   ============================================================ */
+:root {
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 20;
+  --z-header: 30;
+  --z-overlay: 40;
+  --z-modal: 50;
+
+  /* Announcement bar (2.25rem) + nav (4rem) + keybed (0.625rem). The hero
+     clears this. Once scrolled the announcement slides away, leaving
+     --header-pinned, which is what anchor jumps clear. */
+  --header-h: 6.875rem;
+  --header-pinned: calc(var(--header-h) - 2.25rem);
+}
+
+@media (min-width: 1024px) {
+  :root { --header-h: 7.375rem; } /* nav is 4.5rem from lg */
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+/* In the base layer, so `border-*` colour utilities can override it. Left
+   unlayered it outranked every utility and turned all borders on the page —
+   rose, gold, the faint dividers on dark sections — into this one lavender. */
+@layer base {
+  *, ::before, ::after { border-color: var(--color-line); }
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Offset anchor jumps so headings clear the fixed header */
+  scroll-padding-top: calc(var(--header-pinned) + 1.5rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-lavender);
+  color: var(--color-ink);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Element defaults live in the base layer, so utilities on an element win.
+   Unlayered, these outranked every utility: `truncate` could not stop a <p>
+   wrapping (text-wrap resets the wrap mode), and uppercase label headings lost
+   their letter-spacing to the heading default. */
+@layer base {
+  h1, h2, h3, h4 {
+    line-height: 1.06;
+    letter-spacing: -0.028em;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+  h3, h4 { line-height: 1.2; letter-spacing: -0.02em; }
+
+  p { text-wrap: pretty; }
+}
+
+/* Visible, branded focus ring — never removed, only replaced.
+   Longhand, because the `outline` shorthand competes with Tailwind's
+   preflight reset and the colour can end up falling back to currentColor. */
+:focus-visible {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: var(--color-rose);
+  outline-offset: 3px;
+}
+/* Focus indication must be instant. Tailwind's `transition-colors` includes
+   outline-color, which otherwise fades the ring in over 240ms. */
+:focus-visible {
+  transition-property: none;
+}
+/* Rose has too little contrast against navy and burgundy, so dark sections
+   switch the ring to gold (11.9:1 on navy). */
+.on-dark :focus-visible,
+.on-dark :is(a, button):focus-visible {
+  outline-color: var(--color-gold);
+}
+
+::selection { background: var(--color-rose); color: var(--color-ivory); }
+
+/* ============================================================
+   REDUCED MOTION — global kill switch
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   Visible by default. The rise is an enhancement applied only where
+   scroll-driven animation exists, and never under reduced motion.
+   ============================================================ */
+@keyframes reveal-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-rise both;
+      animation-timeline: view();
+      animation-range: entry calc(var(--reveal-d, 0) * 4%)
+                       entry calc(58% + var(--reveal-d, 0) * 4%);
+    }
+  }
+}
+
+/* Disclosure panels drop in from the block that opened them. Killed by the
+   reduced-motion switch above like every other animation. */
+@keyframes panel-drop {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@utility animate-panel-drop {
+  animation: panel-drop var(--dur-base) var(--ease-out-soft) both;
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+@utility container-page {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+/* Eyebrow: engraved tempo-mark idiom from sheet music. Set at 1rem, not
+   small: an italic serif at 14px in rose barely registered as a label. */
+@utility eyebrow {
+  font-family: var(--font-display), Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-rose-text);
+}
+
+@utility sr-only-focusable {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
