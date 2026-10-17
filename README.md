@@ -30,6 +30,7 @@ outstanding.
 | 3 | Photography — portrait 3:4, teaching shots | `images` |
 | 4 | Parental consent for each student video (several are children); written reviews, with permission to use names | `testimonials.videos`, `testimonials.items` |
 | 5 | Full legal name, for the footer and the certificate | `brand.fullName` |
+| 5a | **Terms & Policies page** (`/policies`): legal name, phone, address and jurisdiction city — they show in [brackets] until filled; confirm the refund rules and access timing with Simran; have the text reviewed | `content/policies.ts` |
 | 6 | Contact email | `brand.email` |
 | 7 | Real domain | `brand.siteUrl` |
 | 8 | YouTube channel, if there is one to link | `footer.socials` |

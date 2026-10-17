@@ -86,9 +86,11 @@ export function Footer() {
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
               {legal.map((l) => (
                 <li key={l.label}>
+                  {/* Deliberately quiet: small and dimmed, but still 5.3:1
+                      on navy, so a reviewer (or anyone) can read it */}
                   <a
                     href={l.href}
-                    className="inline-flex min-h-11 items-center transition-colors duration-[var(--dur-fast)] hover:text-gold"
+                    className="inline-flex min-h-11 items-center text-[length:var(--text-micro)] text-ink-invert-muted/70 transition-colors duration-[var(--dur-fast)] hover:text-gold"
                   >
                     {l.label}
                   </a>

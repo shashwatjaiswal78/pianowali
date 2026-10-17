@@ -499,10 +499,6 @@ export const footer = {
       ],
     },
   ],
-  /* TODO — link real Privacy and Terms pages. A link with no href is left
-   * out of the footer rather than shown as a dead "#". */
-  legal: [
-    { label: "Privacy", href: null as string | null },
-    { label: "Terms", href: null as string | null },
-  ],
+  /* One quiet link, bottom right, to the page holding every policy */
+  legal: [{ label: "Terms & Policies", href: "/policies" as string | null }],
 };

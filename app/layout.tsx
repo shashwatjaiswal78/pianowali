@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Fraunces } from "next/font/google";
-import { brand, course, curriculum, faq, hero, pricing } from "@/content/site";
+import { brand, hero } from "@/content/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -54,55 +54,6 @@ export const viewport: Viewport = {
   themeColor: "#0d101b",
 };
 
-/* Only claims Simran has actually made. No aggregateRating until there are
- * real reviews to aggregate — inventing one is both a trust problem and, in
- * structured data, something search engines penalise. */
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      name: brand.fullName,
-      jobTitle: brand.role,
-      url: brand.siteUrl,
-      sameAs: [`https://instagram.com/${brand.instagram}`],
-    },
-    {
-      "@type": "Course",
-      name: brand.courseName,
-      description: course.intro,
-      provider: { "@type": "Person", name: brand.fullName },
-      inLanguage: ["en", "hi"],
-      educationalLevel: "Beginner",
-      teaches: course.points,
-      syllabusSections: curriculum.modules.map((m, i) => ({
-        "@type": "Syllabus",
-        position: i + 1,
-        name: m.title,
-      })),
-      offers: {
-        "@type": "Offer",
-        price: pricing.price.replace(/,/g, ""),
-        priceCurrency: "INR",
-        category: "Paid",
-        availability: "https://schema.org/InStock",
-      },
-      hasCourseInstance: {
-        "@type": "CourseInstance",
-        courseMode: "online",
-      },
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: faq.items.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -116,10 +67,6 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
       </body>
     </html>
   );
