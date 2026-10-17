@@ -25,6 +25,9 @@
   --color-rose-press: #b80940;  /* white text on it: 6.66:1 */
   --color-rose-text: #d40d47;   /* on lavender 4.79:1, on white 5.32:1 */
   --color-rose-tint: #fdeaf0;
+  /* The "light red" of the curriculum blocks. Navy text on it 14.6:1;
+     rose-cta numerals 3.7:1 (display size). */
+  --color-rose-soft: #fcd9e2;
   --color-navy-raised: #161a2b;
   --color-navy-sunken: #080a12;
   --color-burgundy-raised: #552937;

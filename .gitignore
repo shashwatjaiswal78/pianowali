@@ -42,6 +42,8 @@ next-env.d.ts
 
 # raw source footage — the web-ready encodes live in public/videos/
 /Video Assets.zip
+/IMG_*.PNG
+/IMG_*.png
 
 # this machine's Claude Code permissions
 /.claude/settings.local.json

@@ -37,9 +37,11 @@ export const images = {
     src: stock("1552422535-c45813c61732"),
     alt: "Hands playing an upright piano",
   },
-  keysWarm: {
-    src: stock("1520523839897-bd0b52f945a0"),
-    alt: "Close view of the keybed of a wooden upright piano",
+  /* Simran's own image (IMG_7659.PNG), beside "Why it works". 16:9 with
+   * text in the frame, so the slot is 16:9 and the alt repeats the words. */
+  whyItWorks: {
+    src: "/images/simran-play-piano.jpg",
+    alt: "Simran smiling beside her keyboard, with the words: Everything you need to play piano — chords, scales, songs, improvisation",
   },
 } satisfies Record<string, Img>;
 
@@ -116,7 +118,7 @@ export const hero = {
   /* Lucide icon names — see components/sections/Hero.tsx */
   badges: [
     { icon: "Piano", label: "8+ years playing" },
-    { icon: "GraduationCap", label: "30+ students taught" },
+    { icon: "GraduationCap", label: "100+ students taught" },
     { icon: "Globe", label: "Students across the globe" },
   ],
 };
@@ -143,7 +145,7 @@ export const about = {
   stats: [
     { value: 8, suffix: "+", label: "Years playing" },
     { value: 3, suffix: "+", label: "Years teaching" },
-    { value: 30, suffix: "+", label: "Students taught" },
+    { value: 100, suffix: "+", label: "Students taught" },
     { value: 23, suffix: "", label: "Video lessons" },
   ],
 };
@@ -178,37 +180,38 @@ export const course = {
 };
 
 /* --- §4a What's included ------------------------------------------------- */
+/* `icon` names one of the custom icons in components/ui/FeatureIcons.tsx */
 export const inside = {
   eyebrow: "What's included",
   heading: "Everything you need, in one place",
   items: [
     {
-      icon: "PlayCircle",
+      icon: "lessons",
       title: "23 video lessons",
       body: "Four modules that take you from your first key to playing full songs with both hands.",
     },
     {
-      icon: "Music4",
+      icon: "songs",
       title: "Hindi + English songs",
       body: "Bollywood and pop songs taught end to end, right hand first and then with chords.",
     },
     {
-      icon: "CalendarDays",
+      icon: "live",
       title: "Sunday live doubt sessions",
       body: "Two months of live Sunday sessions where you can bring whatever you're stuck on.",
     },
     {
-      icon: "MessageCircle",
+      icon: "community",
       title: "WhatsApp community",
       body: "A group of fellow students to share progress with and ask questions between lessons.",
     },
     {
-      icon: "Award",
+      icon: "certificate",
       title: "Certificate of completion",
       body: "A downloadable PDF with your name, the course title and Simran's signature.",
     },
     {
-      icon: "Infinity",
+      icon: "lifetime",
       title: "Lifetime access",
       body: "Watch anytime, anywhere, for as long as you like. No subscription, no renewal.",
     },
@@ -279,7 +282,7 @@ export const curriculum = {
         "Next up: G major — your second happy scale",
         "Song time: Kuch Kuch Hota Hai (right hand)",
         "Level up: Kuch Kuch Hota Hai with chords",
-        "F major scale — your first flat note made easy",
+        "F major scale — step-by-step",
         "Song time: Emptiness (right hand)",
         "Level up: Emptiness with chords",
         "Minor scales made simple — begin with A minor",
@@ -396,7 +399,7 @@ export const pricing = {
     "WhatsApp student community",
     "Certificate of completion",
     "Bonus: keyboard buying guide",
-    "Lifetime access to everything, including future lessons",
+    "Lifetime access to everything",
   ],
   ctaLabel: "Enroll now",
 };

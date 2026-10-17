@@ -1,22 +1,29 @@
 import { cn } from "@/lib/utils";
 import { brand } from "@/content/site";
 
-/* The mark reuses the keybed geometry at a small scale: three white keys and
- * two black, which is the shape of the instrument reduced to its minimum. */
+/* Simran's SJ monogram — the letters standing on three piano keys — beside
+ * her name. The mark is a transparent PNG used as a CSS mask, so it takes the
+ * current text colour: white on the dark header and footer, navy elsewhere.
+ *
+ * Cut from the closing card of her intro video (1080p). If a vector original
+ * (SVG / AI / EPS) turns up, swap it in at /images/sj-mark — same shape, same
+ * mask, crisper at large sizes. */
+const mark = {
+  maskImage: "url(/images/sj-mark.png)",
+  WebkitMaskImage: "url(/images/sj-mark.png)",
+  maskSize: "contain",
+  WebkitMaskSize: "contain",
+  maskRepeat: "no-repeat",
+  WebkitMaskRepeat: "no-repeat",
+  maskPosition: "center",
+  WebkitMaskPosition: "center",
+} as const;
+
 export function Wordmark({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <svg
-        aria-hidden
-        viewBox="0 0 24 24"
-        className="size-7 shrink-0"
-        fill="none"
-      >
-        <rect x="0.5" y="2.5" width="23" height="19" rx="3.5" className="stroke-current opacity-40" />
-        <path d="M8.5 3v10M16 3v10" className="stroke-current opacity-30" strokeWidth="1" />
-        <rect x="5.5" y="3" width="3.5" height="8" rx="1" className="fill-rose" />
-        <rect x="14.5" y="3" width="3.5" height="8" rx="1" className="fill-current opacity-70" />
-      </svg>
+      {/* 319×433 source, so 36px tall is ~26.5px wide */}
+      <span aria-hidden className="block h-9 w-[1.66rem] shrink-0 bg-current" style={mark} />
       <span className="text-[1.0625rem] font-extrabold tracking-[-0.03em]">
         {brand.name}
         <span className="text-rose">.</span>

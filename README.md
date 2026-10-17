@@ -37,7 +37,7 @@ outstanding.
 ### A standing rule about claims
 
 Every figure on the page is one Simran supplied: 8+ years playing, 3+ years
-teaching, 30+ students, 23 lessons, ages 4 to 65. **Do not add star ratings,
+teaching, 100+ students, 23 lessons, ages 4 to 65. **Do not add star ratings,
 learner counts, completion rates, or a money-back guarantee unless they are
 real.** These values also feed the `Course` structured data in
 `app/layout.tsx`, where an invented `aggregateRating` is something search
@@ -179,7 +179,7 @@ app/
   layout.tsx     fonts, metadata, Course + Person JSON-LD, skip link
   page.tsx       composes the seven sections in order
   globals.css    design tokens, base styles, reveal animation, reduced motion
-  icon.svg       favicon
+  icon.png       favicon — the SJ monogram (apple-icon.png for iOS)
 
 content/site.ts  ← all copy, data and links
 

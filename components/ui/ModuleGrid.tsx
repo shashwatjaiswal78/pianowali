@@ -9,8 +9,8 @@ export type Module = { title: string; count: string; lessons: string[] };
 /* ---------------------------------------------------------------------------
  * MODULE GRID — the curriculum as four solid blocks, stacked 01 to 04.
  *
- * Each module is a block in one of the four brand colours, alternating light
- * and dark so no two neighbours blur together. Clicking a block drops its
+ * Each module is a solid block in one of two reds — brand red and a light
+ * red — alternating, so no two neighbours blur together. Clicking a block drops its
  * lesson list open directly beneath it, with a caret pointing down into it.
  *
  * On phones a block is a tall card: number and label on top, title, then the
@@ -19,18 +19,17 @@ export type Module = { title: string; count: string; lessons: string[] };
  * number on the left, the label over the title, count and chevron on the
  * right.
  *
- * Every small text pairing clears 4.5:1: ivory on rose-cta 4.82, ivory on
- * navy and burgundy well above, navy on gold 11.9.
+ * Every small text pairing clears 4.5:1: ivory on rose-cta 4.82, navy on
+ * rose-soft 14.6. The big rose-cta numerals on rose-soft are 3.7:1, above the
+ * 3:1 needed at display size.
  * -------------------------------------------------------------------------*/
 const tones = [
   { block: "bg-rose-cta text-ivory", num: "text-ivory", fill: "bg-rose-cta text-ivory", icon: "bg-ivory/15" },
-  { block: "bg-navy text-ivory", num: "text-rose", fill: "bg-navy text-ivory", icon: "bg-ivory/10" },
-  { block: "bg-gold text-navy", num: "text-navy", fill: "bg-gold text-navy", icon: "bg-navy/10" },
-  { block: "bg-burgundy text-ivory", num: "text-gold", fill: "bg-burgundy text-ivory", icon: "bg-ivory/10" },
+  { block: "bg-rose-soft text-navy", num: "text-rose-cta", fill: "bg-rose-soft text-navy", icon: "bg-rose-cta text-ivory" },
 ] as const;
 
 /* Matches the block colours, for the caret that joins block to panel */
-const caretFill = ["bg-rose-cta", "bg-navy", "bg-gold", "bg-burgundy"] as const;
+const caretFill = ["bg-rose-cta", "bg-rose-soft"] as const;
 
 export function ModuleGrid({
   modules,
