@@ -43,7 +43,7 @@ export function ModuleGrid({
   const [open, setOpen] = useState<number | null>(defaultOpen);
   const uid = useId();
 
-  // Lessons are numbered across the whole course, 1–23, so each block can say
+  // Lessons are numbered across the whole course, 1–25, so each block can say
   // where it sits in the sequence.
   const starts = modules.reduce<number[]>(
     (acc, m, i) => [...acc, i === 0 ? 1 : acc[i - 1] + modules[i - 1].lessons.length],

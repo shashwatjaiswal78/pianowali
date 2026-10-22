@@ -22,7 +22,7 @@ const base = {
 const ACCENT = "var(--icon-accent)";
 const BG = "var(--icon-bg)";
 
-/* 23 video lessons — a stack of lesson screens, play button on the front */
+/* 25 video lessons — a stack of lesson screens, play button on the front */
 export function LessonsIcon({ className }: Props) {
   return (
     <svg {...base} className={className}>

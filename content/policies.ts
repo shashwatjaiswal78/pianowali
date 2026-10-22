@@ -65,7 +65,7 @@ export const policies = {
         {
           h: "The Course",
           p: [
-            "The Course is a self-paced online piano course of 23 pre-recorded video lessons across four modules. Enrolment also includes the extras listed on the course page: two months of Sunday live doubt sessions, a WhatsApp student community, a certificate of completion and a keyboard buying guide.",
+            "The Course is a self-paced online piano course of 25 pre-recorded video lessons across four modules. Enrolment also includes the extras listed on the course page: two months of Sunday live doubt sessions, a WhatsApp student community, a certificate of completion and a keyboard buying guide.",
             "We may improve, re-record or reorder lessons over time. We won't remove what you paid for without offering something equivalent.",
           ],
         },

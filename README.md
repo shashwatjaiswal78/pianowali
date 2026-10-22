@@ -35,7 +35,7 @@ outstanding.
 ### A standing rule about claims
 
 Every figure on the page is one Simran supplied: 8+ years playing, 3+ years
-teaching, 100+ students, 23 lessons, ages 4 to 65. **Do not add star ratings,
+teaching, 500+ students, 25 lessons, ages 4 to 65. **Do not add star ratings,
 learner counts, completion rates, or a money-back guarantee unless they are
 real.** These values also feed the `Course` structured data in
 `app/layout.tsx`, where an invented `aggregateRating` is something search
@@ -205,7 +205,7 @@ components/
 The curriculum renders through `ModuleGrid`: four blocks in rose, navy, gold
 and burgundy, alternating light and dark. Clicking one drops its lessons open
 beneath it — directly under the block on small screens, and as a full-width
-panel under the row of four from `lg`. Lessons are numbered 1–23 across the
+panel under the row of four from `lg`. Lessons are numbered 1–25 across the
 course. The FAQ uses the simpler `Accordion`.
 
 ---

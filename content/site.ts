@@ -116,7 +116,7 @@ export const hero = {
   /* Lucide icon names — see components/sections/Hero.tsx */
   badges: [
     { icon: "Piano", label: "8+ years playing" },
-    { icon: "GraduationCap", label: "100+ students taught" },
+    { icon: "GraduationCap", label: "500+ students taught" },
     { icon: "Globe", label: "Students across the globe" },
   ],
 };
@@ -143,8 +143,8 @@ export const about = {
   stats: [
     { value: 8, suffix: "+", label: "Years playing" },
     { value: 3, suffix: "+", label: "Years teaching" },
-    { value: 100, suffix: "+", label: "Students taught" },
-    { value: 23, suffix: "", label: "Video lessons" },
+    { value: 500, suffix: "+", label: "Students taught" },
+    { value: 25, suffix: "", label: "Video lessons" },
   ],
 };
 
@@ -163,7 +163,7 @@ export const course = {
   ],
   meta: [
     { label: "Format", value: "Self-paced video" },
-    { label: "Lessons", value: "23 across 4 modules" },
+    { label: "Lessons", value: "25 across 4 modules" },
     { label: "Level", value: "Absolute beginner" },
     { label: "Access", value: "Lifetime" },
   ],
@@ -185,7 +185,7 @@ export const inside = {
   items: [
     {
       icon: "lessons",
-      title: "23 video lessons",
+      title: "25 video lessons",
       body: "Four modules that take you from your first key to playing full songs with both hands.",
     },
     {
@@ -251,7 +251,7 @@ export const benefits = {
 export const curriculum = {
   eyebrow: "Module by module",
   heading: "The curriculum",
-  note: "Four modules, 23 lessons. Work through them in order the first time.",
+  note: "Four modules, 25 lessons. Work through them in order the first time.",
   modules: [
     {
       title: "Getting started",
@@ -391,7 +391,7 @@ export const pricing = {
   priceNote: "One-time payment",
   summary: "Full course, all bonuses, lifetime access.",
   features: [
-    "All 4 modules — 23 video lessons",
+    "All 4 modules — 25 video lessons",
     "Hindi + English songs, taught end to end",
     "2 months of Sunday live doubt sessions",
     "WhatsApp student community",
