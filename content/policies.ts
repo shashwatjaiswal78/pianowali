@@ -20,20 +20,17 @@
 import { brand, pricing } from "@/content/site";
 
 export const business = {
-  /* TODO — full legal name, or business name, exactly as on the Razorpay
-   * application and bank account */
-  legalName: brand.fullName === "Simran" ? "[Full legal name]" : brand.fullName,
-  /* TODO — confirm this inbox exists and is monitored */
+  /* Exactly as on the Razorpay application and bank account */
+  legalName: brand.fullName,
   email: brand.email,
-  /* TODO — contact number with country code */
-  phone: "[Phone number]",
+  phone: "+91 7428 778 446",
   /* TODO — business or correspondence address */
   address: "[Business address]",
   /* TODO — the city whose courts have jurisdiction (usually where the
    * business is based) */
   jurisdiction: "[City]",
   instagram: brand.instagram,
-  lastUpdated: "17 October 2026",
+  lastUpdated: "22 October 2026",
 };
 
 export type PolicyBlock = {
@@ -229,7 +226,6 @@ export const policies = {
           ul: [
             "Charged twice: if a payment goes through more than once, we refund every duplicate in full.",
             "No access: if you paid but couldn't access the Course, and we weren't able to fix it within 7 days of you telling us, we refund you in full.",
-            "Changed your mind early: if you write to us within 24 hours of paying, and before you've opened any lesson, we cancel your enrolment and refund you in full.",
           ],
         },
         {

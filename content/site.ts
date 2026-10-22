@@ -48,14 +48,12 @@ export const images = {
 /* --- Identity ------------------------------------------------------------ */
 export const brand = {
   name: "Simran",
-  /* TODO — full name for the footer copyright and the certificate */
-  fullName: "Simran",
+  fullName: "Simran Jassal",
   role: "Pianist & piano teacher",
   courseName: "Piano Made Easy for Beginners",
   tagline: "Piano Seekho – Zero Se, Bina Sheet Music",
-  /* TODO — confirm before launch */
-  email: "hello@simranpiano.com",
-  siteUrl: "https://simranpiano.com",
+  email: "learnwithpianowali@gmail.com",
+  siteUrl: "https://pianowali.com",
   instagram: "simranj_musicc",
 };
 
@@ -69,10 +67,10 @@ export const brand = {
  * `contact.whatsappHref` is separate on purpose: it is for questions (FAQ,
  * mobile menu, footer) and keeps pointing at WhatsApp after enrolment moves.
  *
- * TODO — replace `whatsappNumber` with Simran's real number (country code,
- * digits only).
+ * `whatsappNumber` is the same number shown on the policies page: country
+ * code, digits only.
  * -----------------------------------------------------------------------*/
-const whatsappNumber = "910000000000"; // TODO
+const whatsappNumber = "917428778446";
 const whatsapp = (message: string) =>
   `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
