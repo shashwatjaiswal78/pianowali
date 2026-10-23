@@ -29,7 +29,7 @@ outstanding.
 | 2 | A longer intro for the About section, if wanted (YouTube ID) | `about.videoId` |
 | 3 | Photography — portrait 3:4, teaching shots | `images` |
 | 4 | Parental consent for each student video (several are children); written reviews, with permission to use names | `testimonials.videos`, `testimonials.items` |
-| 5 | **Terms & Policies page** (`/policies`): address and jurisdiction city — they show in [brackets] until filled; confirm the access timing with Simran; have the text reviewed | `content/policies.ts` |
+| 5 | **Terms & Policies page** (`/policies`): confirm the access timing with Simran; have the text reviewed | `content/policies.ts` |
 | 6 | YouTube channel, if there is one to link | `footer.socials` |
 
 ### A standing rule about claims

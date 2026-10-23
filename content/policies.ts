@@ -9,12 +9,10 @@
  * This is a starting draft written from what the site already says. It is not
  * legal advice — have it read by someone qualified before relying on it.
  *
- * TODO before applying to Razorpay:
- *   1. Fill in every field of `business` below (they show on the page in
- *      [square brackets] until then).
- *   2. Confirm the refund rules in §3 and the access timing in §4 with Simran
- *      — they are commitments customers can hold her to.
- *   3. Update `lastUpdated` whenever the text changes.
+ * Keep in mind:
+ *   1. The refund rules in §3 and the access timing in §4 are commitments
+ *      customers can hold Simran to — confirm any change with her.
+ *   2. Update `lastUpdated` whenever the text changes.
  * ==========================================================================*/
 
 import { brand, pricing } from "@/content/site";
@@ -24,13 +22,11 @@ export const business = {
   legalName: brand.fullName,
   email: brand.email,
   phone: "+91 7428 778 446",
-  /* TODO — business or correspondence address */
-  address: "[Business address]",
-  /* TODO — the city whose courts have jurisdiction (usually where the
-   * business is based) */
-  jurisdiction: "[City]",
+  address: "A-5C/5B, Janakpuri, New Delhi 110058",
+  /* The city whose courts have jurisdiction: where the business is based */
+  jurisdiction: "New Delhi",
   instagram: brand.instagram,
-  lastUpdated: "22 October 2026",
+  lastUpdated: "23 October 2026",
 };
 
 export type PolicyBlock = {
