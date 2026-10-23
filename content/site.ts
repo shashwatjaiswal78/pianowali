@@ -82,8 +82,8 @@ export const contact = {
   ),
 };
 
-/* TODO — the live Razorpay Payment Page URL (https://pages.razorpay.com/…) */
-const razorpayPageUrl = "";
+/* The live Razorpay Payment Page */
+const razorpayPageUrl = "https://rzp.io/rzp/4UU7AvzR";
 
 export const cta = {
   primaryHref:
