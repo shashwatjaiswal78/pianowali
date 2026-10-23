@@ -100,7 +100,7 @@ export function Header() {
           <a
             href="#top"
             className="inline-flex min-h-11 shrink-0 items-center text-ivory transition-opacity hover:opacity-80"
-            aria-label="Simran — back to top"
+            aria-label={`${brand.siteName} — back to top`}
           >
             <Wordmark />
           </a>

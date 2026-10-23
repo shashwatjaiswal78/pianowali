@@ -48,6 +48,8 @@ export const images = {
 /* --- Identity ------------------------------------------------------------ */
 export const brand = {
   name: "Simran",
+  /* The site name, shown beside the SJ mark in the header and footer */
+  siteName: "PianoWali",
   fullName: "Simran Jassal",
   role: "Pianist & piano teacher",
   courseName: "Piano Made Easy for Beginners",

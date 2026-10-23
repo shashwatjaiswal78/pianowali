@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { brand } from "@/content/site";
 
 /* Simran's SJ monogram — the letters standing on three piano keys — beside
- * her name. The mark is a transparent PNG used as a CSS mask, so it takes the
+ * the site name, PianoWali. The mark is a transparent PNG used as a CSS mask, so it takes the
  * current text colour: white on the dark header and footer, navy elsewhere.
  *
  * Cut from the closing card of her intro video (1080p). If a vector original
@@ -25,7 +25,7 @@ export function Wordmark({ className }: { className?: string }) {
       {/* 319×433 source, so 36px tall is ~26.5px wide */}
       <span aria-hidden className="block h-9 w-[1.66rem] shrink-0 bg-current" style={mark} />
       <span className="text-[1.0625rem] font-extrabold tracking-[-0.03em]">
-        {brand.name}
+        {brand.siteName}
         <span className="text-rose">.</span>
       </span>
     </span>

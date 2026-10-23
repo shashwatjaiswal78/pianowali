@@ -9,7 +9,7 @@ import { brand } from "@/content/site";
 import { business, policies } from "@/content/policies";
 
 export const metadata: Metadata = {
-  title: `${policies.title} — ${brand.name}`,
+  title: `${policies.title} — ${brand.siteName}`,
   description: policies.lede,
   alternates: { canonical: "/policies" },
 };
@@ -30,7 +30,7 @@ export default function PoliciesPage() {
           <Link
             href="/"
             className="inline-flex min-h-11 items-center transition-opacity hover:opacity-80"
-            aria-label={`${brand.name} — home`}
+            aria-label={`${brand.siteName} — home`}
           >
             <Wordmark />
           </Link>

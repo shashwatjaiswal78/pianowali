@@ -21,7 +21,7 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   metadataBase: new URL(brand.siteUrl),
-  title: `${brand.courseName} — ${brand.name}`,
+  title: `${brand.courseName} — ${brand.siteName}`,
   description: hero.body,
   keywords: [
     "piano lessons online",
@@ -33,16 +33,16 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${brand.courseName} — ${brand.name}`,
+    title: `${brand.courseName} — ${brand.siteName}`,
     description: hero.body,
     url: brand.siteUrl,
-    siteName: brand.name,
+    siteName: brand.siteName,
     locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${brand.courseName} — ${brand.name}`,
+    title: `${brand.courseName} — ${brand.siteName}`,
     description: hero.body,
   },
   robots: { index: true, follow: true },
