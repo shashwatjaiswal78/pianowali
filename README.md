@@ -25,7 +25,7 @@ outstanding.
 
 | # | What's needed | Where it goes |
 |---|---|---|
-| 1 | **Razorpay payment link** for the Enroll now buttons | `cta.primaryHref` |
+| 1 | **Razorpay Payment Page URL** for the Enroll now buttons, plus the enrolment setup — see [Enrolment](#enrolment) | `razorpayPageUrl`, Vercel env vars |
 | 2 | A longer intro for the About section, if wanted (YouTube ID) | `about.videoId` |
 | 3 | Photography — portrait 3:4, teaching shots | `images` |
 | 4 | Parental consent for each student video (several are children); written reviews, with permission to use names | `testimonials.videos`, `testimonials.items` |
@@ -62,10 +62,9 @@ until a tile is pressed, and only one clip plays at a time. The course clip
 plays only while on screen and never starts by itself under reduced motion.
 
 **Every "Enroll now" button** — hero, course, pricing, closing band, nav, mobile
-menu and the sticky bar — reads from `cta.primaryHref`. Enrolment will run
-through Razorpay (Simran is applying); until that link exists it opens WhatsApp
-as a demo stand-in. When Razorpay is live, paste the payment link into
-`cta.primaryHref` — nothing else changes.
+menu and the sticky bar — reads from `cta.primaryHref`, which opens the Razorpay
+Payment Page set in `razorpayPageUrl`. While that is empty they open WhatsApp.
+What happens after payment is under [Enrolment](#enrolment).
 
 Question links (FAQ "Ask a question", the mobile menu, the footer's WhatsApp
 icon and "Message on WhatsApp") use `contact.whatsappHref` instead, so they keep
@@ -76,6 +75,10 @@ lives in `pricing.price`, `pricing.originalPrice` and `pricing.offer`. Once the
 100 are taken, set `price` back to `"1,499"` and `offer` to `null`: the card,
 the sticky bar and the `Course` structured data all return to a single price.
 
+**Change the Razorpay Payment Page amount at the same time** — the site only
+shows the price; Razorpay charges it. (The webhook accepts both ₹999 and
+₹1,499, so access keeps working during the switch.)
+
 ### Images
 
 Placeholders are Unsplash URLs, allowlisted in
@@ -84,6 +87,72 @@ Placeholders are Unsplash URLs, allowlisted in
 (`/images/hero-portrait.jpg`). The aspect ratios are fixed by the components, so
 nothing else needs to change, and the `remotePatterns` allowlist can then be
 deleted.
+
+---
+
+## Enrolment
+
+```
+Enroll now → Razorpay Payment Page (name, email, phone, Gmail for access, pay)
+   ├─ redirect → /enrolled                "check your inbox"
+   └─ webhook  → /api/razorpay/webhook
+        1. check Razorpay's signature (forged requests get a 400)
+        2. re-read the payment from Razorpay: captured, at the course price,
+           and not already handled (payment notes: access_sent)
+        3. share the Drive folder with the buyer's Gmail as a Viewer
+        4. email the folder link from Simran's Gmail
+        5. mark the payment notes access_sent = yes
+      refund.processed → remove that Viewer (unless the same Gmail has
+      another paid payment — the "charged twice" case) and tell Simran
+```
+
+The code is in `lib/enrol/` and `app/api/razorpay/webhook/route.ts`; the copy for
+the thank-you page and the email is in `content/site.ts` (`enrolled`,
+`welcomeEmail`). **The Drive link is never in the code or the pages** — it is
+built on the server from `DRIVE_FOLDER_ID`.
+
+If anything fails, the webhook returns 500, Razorpay retries for up to 24
+hours, and Simran gets an email alert. If a buyer's access address isn't a
+Google account, they're emailed asking for a Gmail address and Simran is
+alerted to share by hand.
+
+### Environment variables
+
+Set in Vercel → Settings → Environment Variables (Production, marked
+**Sensitive**). The names are in [`.env.example`](.env.example). Never commit
+real values, and never give them a `NEXT_PUBLIC_` prefix.
+
+| Variable | Where it comes from |
+|---|---|
+| `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET` | Razorpay → Account & Settings → API Keys |
+| `RAZORPAY_WEBHOOK_SECRET` | The secret typed in when creating the webhook |
+| `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_PRIVATE_KEY` | The service account's JSON key (`client_email`, `private_key`) |
+| `DRIVE_FOLDER_ID` | The course folder's URL, after `/folders/` |
+| `GMAIL_USER`, `GMAIL_APP_PASSWORD` | `learnwithpianowali@gmail.com` and a Google app password |
+| `ADMIN_EMAIL` | Where alerts go (optional; defaults to `GMAIL_USER`) |
+| `WHATSAPP_GROUP_LINK` | Optional. Once set, the welcome email includes the community invite |
+
+> **Changing the Gmail password cancels the app password.** Emails — and
+> Simran's alerts, which use the same account — stop until a new app password
+> is set as `GMAIL_APP_PASSWORD` on Vercel and the site is redeployed.
+> Razorpay's "webhook failing" emails are the backstop.
+
+### Razorpay setup
+
+- **Payment Page**: the course price, with custom fields **Name** and **Gmail
+  for course access** (email and phone are built in). After payment, redirect
+  to `https://www.pianowali.com/enrolled`.
+- **Webhook**: URL `https://www.pianowali.com/api/razorpay/webhook` — the domain
+  Vercel serves directly; the bare domain redirects, and webhooks don't follow
+  redirects. Events: **`payment_page.paid`** and **`refund.processed`** only.
+  Don't add `payment.captured` as well, or every sale is processed twice.
+
+### Doing it by hand
+
+- **Resend access**: open the course folder → Share → add the buyer's Gmail as
+  Viewer, then email them the folder link.
+- **Who has access**: the folder's Share dialog. **Who has paid**: the
+  Razorpay dashboard; a payment's notes show `access_sent` once handled.
 
 ---
 

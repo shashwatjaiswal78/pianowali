@@ -174,7 +174,7 @@ export const policies = {
         {
           h: "Who we share it with",
           p: [
-            "We never sell or rent your personal information. We share it only with the services needed to run the Course — Razorpay (payments), WhatsApp (messages and the student community), our video and course hosting providers (lesson delivery) and our website host — or when the law requires us to.",
+            "We never sell or rent your personal information. We share it only with the services needed to run the Course — Razorpay (payments), Google (Google Drive for lesson delivery, and Gmail for course emails), WhatsApp (messages and the student community) and our website host — or when the law requires us to.",
           ],
         },
         {
@@ -243,12 +243,12 @@ export const policies = {
     {
       id: "delivery",
       title: "Course Access & Delivery",
-      /* TODO — confirm the access timing and how access is sent */
       intro: "Nothing is shipped — the Course is delivered entirely online.",
       blocks: [
         {
           ul: [
-            "After your payment succeeds, your access details are sent to the email address or WhatsApp number you gave at checkout, usually within 24 hours.",
+            "The lessons are in a Google Drive folder. After your payment succeeds, the folder is shared with the Google (Gmail) account you give at checkout, and the link is emailed to you — usually within a few minutes.",
+            "Open the link while signed in to that Google account. Access is personal: the link won't open for anyone else.",
             `If you haven't received them within 24 hours, write to us at ${business.email} and we'll sort it out.`,
             "Lessons can be watched on a phone, tablet or computer, any time, as many times as you like.",
             "Details of the Sunday live sessions are shared with enrolled students in the community.",

@@ -47,3 +47,4 @@ next-env.d.ts
 
 # this machine's Claude Code permissions
 /.claude/settings.local.json
+!.env.example

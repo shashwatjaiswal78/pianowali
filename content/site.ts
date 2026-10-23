@@ -60,11 +60,11 @@ export const brand = {
 };
 
 /* --- Calls to action -----------------------------------------------------
- * Enrolment will run through Razorpay (Simran is applying). Until that link
- * exists, `cta.primaryHref` opens WhatsApp as a stand-in for the demo. When
- * Razorpay is live, paste the payment link into `primaryHref` — every
- * "Enroll now" button (hero, course, pricing, closing band, nav, mobile menu,
- * sticky bar) reads from it, and nothing else needs to change.
+ * Enrolment runs through a Razorpay Payment Page. Paste its URL into
+ * `razorpayPageUrl` and every "Enroll now" button (hero, course, pricing,
+ * closing band, nav, mobile menu, sticky bar) opens it. While it is empty
+ * they open WhatsApp instead. What happens after payment is described in the
+ * README under "Enrolment".
  *
  * `contact.whatsappHref` is separate on purpose: it is for questions (FAQ,
  * mobile menu, footer) and keeps pointing at WhatsApp after enrolment moves.
@@ -82,11 +82,13 @@ export const contact = {
   ),
 };
 
+/* TODO — the live Razorpay Payment Page URL (https://pages.razorpay.com/…) */
+const razorpayPageUrl = "";
+
 export const cta = {
-  /* TODO — the Razorpay payment link. WhatsApp is a demo stand-in until then. */
-  primaryHref: whatsapp(
-    "Hi Simran! I'd like to join the Piano Made Easy for Beginners course.",
-  ),
+  primaryHref:
+    razorpayPageUrl ||
+    whatsapp("Hi Simran! I'd like to join the Piano Made Easy for Beginners course."),
   primaryLabel: "Enroll now",
   navLabel: "Enroll now",
   reassurance: "One-time payment · Lifetime access",
@@ -501,4 +503,61 @@ export const footer = {
   ],
   /* One quiet link, bottom right, to the page holding every policy */
   legal: [{ label: "Terms & Policies", href: "/policies" as string | null }],
+};
+
+/* --- After payment ------------------------------------------------------
+ * `enrolled` is the page Razorpay sends buyers to once they have paid
+ * (/enrolled). `welcomeEmail` is the email the webhook sends with the
+ * course link — see lib/enrol/. The Drive link itself is never here: it is
+ * built on the server from DRIVE_FOLDER_ID, so it never reaches the browser.
+ * -----------------------------------------------------------------------*/
+export const enrolled = {
+  eyebrow: "You're in",
+  heading: "Welcome to the course!",
+  body:
+    "Your payment went through. In the next few minutes you'll get an email " +
+    "with the link to your lessons, shared to the Gmail address you gave at " +
+    "checkout.",
+  steps: [
+    `Open the email from ${brand.email} — check Spam or Promotions if it isn't in your inbox.`,
+    "Open the course link while signed in to that same Gmail account.",
+    "Start with Module 1, lesson 1. Keep your keyboard nearby.",
+  ],
+  help: {
+    title: "No email after an hour?",
+    body: "Message Simran on WhatsApp with your payment ID and she'll sort it out.",
+    ctaLabel: "Message on WhatsApp",
+  },
+  backLabel: "Back to the course page",
+};
+
+export const welcomeEmail = {
+  subject: `You're in! Your ${brand.courseName} lessons`,
+  greeting: (name: string) => (name ? `Hi ${name},` : "Hi,"),
+  intro:
+    "Thank you for joining Piano Made Easy for Beginners. Your lessons are " +
+    "ready — all 25 of them, in one Google Drive folder.",
+  buttonLabel: "Open your lessons",
+  accessNote: (gmail: string) =>
+    `The folder is shared with ${gmail}. Open it while signed in to that ` +
+    "Google account — the link won't open for anyone else, so please keep " +
+    "it to yourself.",
+  community: {
+    title: "Join the student community",
+    body: "Share your progress, ask questions between lessons and hear about the Sunday live sessions.",
+    buttonLabel: "Join the WhatsApp group",
+  },
+  start: "Start with Module 1, lesson 1 — and keep your keyboard nearby.",
+  signoff: "Happy playing,",
+  signature: "Simran",
+  footer: "Questions? Just reply to this email.",
+  /* Sent instead when the address given for access isn't a Google account */
+  needsGmail: {
+    subject: `One more step for your ${brand.courseName} lessons`,
+    body: (gmail: string) =>
+      `Thank you for joining! Your payment went through, but we couldn't ` +
+      `share the lessons with ${gmail} — the course is on Google Drive, so ` +
+      "it needs a Google (Gmail) account. Reply to this email with your " +
+      "Gmail address and Simran will give you access.",
+  },
 };
