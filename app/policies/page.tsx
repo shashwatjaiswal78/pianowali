@@ -160,8 +160,6 @@ export default function PoliciesPage() {
                   {[
                     ["Name", business.legalName],
                     ["Email", business.email],
-                    ["Phone / WhatsApp", business.phone],
-                    ["Address", business.address],
                     ["Instagram", `@${business.instagram}`],
                   ].map(([label, value]) => (
                     <div key={label}>

@@ -21,8 +21,8 @@ export const business = {
   /* Exactly as on the Razorpay application and bank account */
   legalName: brand.fullName,
   email: brand.email,
-  phone: "+91 7428 778 446",
-  address: "A-5C/5B, Janakpuri, New Delhi 110058",
+  /* Phone and address are deliberately not stored here: they are not shown
+   * anywhere on the site. Questions go by email, Instagram or WhatsApp. */
   /* The city whose courts have jurisdiction: where the business is based */
   jurisdiction: "New Delhi",
   instagram: brand.instagram,
